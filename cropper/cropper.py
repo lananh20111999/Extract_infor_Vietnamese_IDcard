@@ -51,7 +51,8 @@ def cropper(image, pts):
 		[0, maxHeight - 1]], dtype = "float32")
 	# compute the perspective transform matrix and then apply it
 	M = cv2.getPerspectiveTransform(rect, dst)
-	warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
+	warped = cv2.warpPerspective(image, M, (maxWidth+20, maxHeight+20))
+	resized = cv2.resize(warped, (500,300), interpolation = cv2.INTER_AREA)
 	# return the warped image
-	return warped
+	return resized
 
